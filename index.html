@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LocalStorage</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body onload="llenarTabla();">
+
+	<nav class="navbar navbar-default" style="background-color: #337ab7">
+		<h4 class="text-center" style="color: #fff; font-size: 23px; font-weight: bold;">Registros Locales</h4>
+	</nav>
+
+	<div class="container">
+		<div class="panel panel-primary">
+	  	<!-- Default panel contents -->
+	  		<div class="panel-heading" style="font-weight: bold;">Datos Personales</div>
+	  		<div class="panel-body">
+	  			<form action="Javascript:registrar()">
+		  			<div class="row">
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Nombre</label>
+		    					<input type="text" class="form-control" id="nombre" required="required">
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Apellido</label>
+		    					<input type="text" class="form-control" id="apellido" required="required">
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Tipo de Identificación</label>
+		    					<select id="tipoIdentificacion" class="form-control">
+		    						<option>Cedula</option>
+		    						<option>Tarjeta de Identidad</option>
+		    						<option>Registro Civil</option>
+		    						<option>Pasaporte</option>
+		    					</select>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>N° Identificación</label>
+		    					<input type="number" class="form-control" id="identificacion" required="required">
+		    				</div>
+		    			</div>
+		    		</div>
+
+		    		<div class="row">
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Regimén</label>
+		    					<select id="regimen" class="form-control">
+		    						<option>Común</option>
+		    						<option>Simplificado</option>
+		    						<option>Especial</option>
+		    					</select>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Tipo de Persona</label>
+		    					<select id="tipoPersona" class="form-control">
+		    						<option>Persona Natural</option>
+		    						<option>Persona Jurídica</option>
+		    					</select>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Estado Civil</label>
+		    					<select id="estadoCivil" class="form-control">
+		    						<option>Soltero</option>
+		    						<option>Casado</option>
+		    						<option>Divorciado</option>
+		    						<option>Viudo</option>
+		    						<option>Unión Libre</option>
+		    					</select>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3">
+		    				<div class="form-group">
+		    					<label>Sexo</label>
+		    					<select id="sexo" class="form-control">
+		    						<option>M</option>
+		    						<option>F</option>
+		    					</select>
+		    				</div>
+		    			</div>
+		    		</div>
+		    		<center>
+		  				<button type="submit" class="btn btn-primary" style="width: 15%;">Registrar</button>
+		  				<button type="reset" class="btn btn-warning" style="width: 15%;">Limpiar</button>
+		  			</center>
+		  		</form>
+	  		</div>
+
+	  <!-- Table -->
+			<table class="table table-hover table-condensed">
+	    		<thead>
+	    			<th>Id</th>
+	    			<th>Nombre</th>
+	    			<th>Apellido</th>
+	    			<th>Tipo de Identificación</th>
+	    			<th>Identificación</th>
+	    			<th>Régimen</th>
+	    			<th>Tipo de Persona</th>
+	    			<th>Estado Civil</th>
+	    			<th>Sexo</th>
+	    		</thead>
+	    		<tbody id="tablaPersonas">
+	    		</tbody>
+	  		</table>
+		</div>
+	</div>
+	
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
+	<script src="js/logica.js"></script>
+</body>
+</html>
