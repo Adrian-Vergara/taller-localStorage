@@ -5,7 +5,7 @@
 	<title>LocalStorage</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<body onload="llenarTabla();">
+<body>
 
 	<nav class="navbar navbar-default" style="background-color: #337ab7">
 		<h4 class="text-center" style="color: #fff; font-size: 23px; font-weight: bold;">Registros Locales</h4>
@@ -16,25 +16,25 @@
 	  	<!-- Default panel contents -->
 	  		<div class="panel-heading" style="font-weight: bold;">Datos Personales</div>
 	  		<div class="panel-body">
-	  			<form action="Javascript:registrar()">
+	  			<form action="Javascript:Persona.registrar()">
 		  			<div class="row">
 		    			<div class="col-md-3">
 		    				<div class="form-group">
 		    					<label>Nombre</label>
-		    					<input type="text" class="form-control" id="nombre" required="required">
+		    					<input type="text" class="form-control caja" id="nombre" required="required">
 		    				</div>
 		    			</div>
 		    			<div class="col-md-3">
 		    				<div class="form-group">
 		    					<label>Apellido</label>
-		    					<input type="text" class="form-control" id="apellido" required="required">
+		    					<input type="text" class="form-control caja" id="apellido" required="required">
 		    				</div>
 		    			</div>
 		    			<div class="col-md-3">
 		    				<div class="form-group">
 		    					<label>Tipo de Identificación</label>
 		    					<select id="tipoIdentificacion" class="form-control">
-		    						<option>Cedula</option>
+		    						<option>Cédula</option>
 		    						<option>Tarjeta de Identidad</option>
 		    						<option>Registro Civil</option>
 		    						<option>Pasaporte</option>
@@ -44,7 +44,7 @@
 		    			<div class="col-md-3">
 		    				<div class="form-group">
 		    					<label>N° Identificación</label>
-		    					<input type="number" class="form-control" id="identificacion" required="required">
+		    					<input type="number" class="form-control caja" id="identificacion" required="required">
 		    				</div>
 		    			</div>
 		    		</div>
