@@ -20,23 +20,19 @@ var Persona = (function(){
     };
 
     var llenarTabla = function () {
+        var cabeceras = {
+            "nombre": "Nombre",
+            "apellido": "Apellido",
+            "tipoIdentificacion": "Tipo Identificación",
+            "identificacion": "Identificación",
+            "regimen": "Régimen",
+            "tipoPersona": "Tipo Persona",
+            "estadoCivil": "Estado Civil",
+            "sexo": "Sexo"
+        };
         var personas = JSON.parse(localStorage.personas); //le asignamos a personas los datos almacenados
-        $("#tablaPersonas").html(""); //limpiamos la tabla para cargar los datos
-        for(i in personas) //recorremos el array de objetos personas
-        {
-            /*asignamos en variables los datos a mostrar para mayor facilidad*/
-            var id = parseInt(i) + 1;
-            var nombre = personas[i].nombre;
-            var apellido = personas[i].apellido;
-            var tipoIdentificacion = personas[i].tipoIdentificacion;
-            var identificacion = personas[i].identificacion;
-            var regimen  = personas[i].regimen;
-            var tipoPersona = personas[i].tipoPersona;
-            var estadoCivil = personas[i].estadoCivil;
-            var sexo = personas[i].sexo;
-            /*Agregamos los datos de la tabla*/
-            $("#tablaPersonas").append("<tr><td class='text-right'>"+id+"</td><td>"+nombre+"</td><td>"+apellido+"</td><td>"+tipoIdentificacion+"</td><td class='text-right' style='width: 10%;'>"+identificacion+"</td><td>"+regimen+"</td><td>"+tipoPersona+"</td><td>"+estadoCivil+"</td><td>"+sexo+"</td></tr>");
-        }
+        $("#tablaPersonas").cargarTabla(cabeceras, personas, "tablaPersonas");
+        //$("#tablaPersonas").html(""); //limpiamos la tabla para cargar los datos
     };
 
     var limpiarCampos = function () {
@@ -46,8 +42,7 @@ var Persona = (function(){
 
     return {
         registrar: registrar,
-        llenarTabla: llenarTabla,
-        limpiarCampos: limpiarCampos
+        llenarTabla: llenarTabla
     };
 })();
 
