@@ -1,0 +1,12 @@
+#map{
+    margin: 0 auto;
+    display: block;
+    padding: 0;
+    position: relative; /* posición absoluta a navegador */
+    left: 0;        /* ajusta a borde de navegador */
+    right: 0;
+    bottom: 0;
+    height: 400px;
+    width: 100%;
+    border-radius: 5px;
+}

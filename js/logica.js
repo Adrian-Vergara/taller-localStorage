@@ -12,10 +12,13 @@ var Persona = (function(){
         persona.tipoPersona = $("#tipoPersona").val();
         persona.estadoCivil = $("#estadoCivil").val();
         persona.sexo = $("#sexo").val();
+        persona.latitud = localStorage.latitud;
+        persona.longitud = localStorage.longitud;
         personas.push(persona); //agregamos el objeto al array de objetos
         localStorage.personas = JSON.stringify(personas); //sobreescribimos lo que estaba en la variable localStorage con el fin de almacenar los registros antiguos y los recientes
         llenarTabla();
         bootbox.alert("Datos Almacenados Exitosamente!", function() {});
+        dibujar_cercanos();
         limpiarCampos();
     };
 
@@ -28,11 +31,16 @@ var Persona = (function(){
             "regimen": "Régimen",
             "tipoPersona": "Tipo Persona",
             "estadoCivil": "Estado Civil",
-            "sexo": "Sexo"
+            "sexo": "Sexo",
+            "latitud": "Latitud",
+            "longitud": "Longitud"
         };
-        var personas = JSON.parse(localStorage.personas); //le asignamos a personas los datos almacenados
-        $("#tablaPersonas").cargarTabla(cabeceras, personas, "tablaPersonas");
-        //$("#tablaPersonas").html(""); //limpiamos la tabla para cargar los datos
+        if(localStorage.personas != null)
+        {
+            var personas = JSON.parse(localStorage.personas); //le asignamos a personas los datos almacenados
+            $("#tablaPersonas").cargarTabla(cabeceras, personas, "tablaPersonas");
+            //$("#tablaPersonas").html(""); //limpiamos la tabla para cargar los datos
+        }
     };
 
     var limpiarCampos = function () {
