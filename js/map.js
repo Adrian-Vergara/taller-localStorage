@@ -1,6 +1,8 @@
 /**
  * Created by Adrian on 17/04/2016.
  */
+
+var personas = [];
 function crearMarcador(e){
 
     map.removeMarkers();
@@ -9,7 +11,7 @@ function crearMarcador(e){
     localStorage.latitud = lat;
     localStorage.longitud = lng;
 
-    map.addMarker({ lat: lat, lng: lng});  // pone marcador en mapa
+    map.addMarker({ lat: lat, lng: lng, title: "Epicentro"});  // pone marcador en mapa
     dibujar_cercanos();
 };
 
@@ -37,21 +39,46 @@ function geolocalizar(){
 
 function dibujar_cercanos()
 {
-    if(localStorage.personas != null)
+    var url = "http://localhost:8080/geolocalizacion/public/api/persona";
+    $.getJSON(url,
+        function(respuesta){
+            personas = respuesta.personas;
+        }
+    );
+    console.log(personas);
+    if(personas != null)
     {
-        R = 6372.795477598;
-        var personas = JSON.parse(localStorage.personas);
-        var distancia = 50;
+        var radio = parseFloat(2.0);
         for(i in personas)
         {
-            var LATB = personas[i].latitud;
-            var LonA = personas[i].longitud;
-            var LATA = parseFloat(localStorage.latitud);
-            var LonB = parseFloat(localStorage.longitud);
-            dist= R * Math.acos(Math.sin(LATA) * Math.sin(LATB) + Math.cos (LATA) * Math.cos (LATB) * Math.cos (LonA-LonB));
-            alert(dist)
+            var latitudA = personas[i].latitud;
+            var longitudA = personas[i].longitud;
+            var latitudB = parseFloat(localStorage.latitud);
+            var longitudB = parseFloat(localStorage.longitud);
+            var distancia = parseFloat(getDistancia(latitudA, longitudA, latitudB, longitudB));
+            if(distancia <= radio)
+            {
+                map.addMarker({
+                    lat: latitudA,
+                    lng: longitudA,
+                    title: personas[i].nombre + " " + personas[i].apellido
+                });
+            }
         }
     }
-}
-geolocalizar();
-dibujar_cercanos();
+};
+
+function rad(x) {
+    return x * Math.PI / 180;
+};
+
+function getDistancia(latA,longA,latB,longB){
+    var R = 6378137; //radio de la tierra en metros
+    var d =R * Math.acos( Math.sin(rad(latA)) * Math.sin(rad(latB)) + Math.cos(rad(latA)) * Math.cos(rad(latB)) * Math.cos(rad(longA-longB)));
+    return d/1000;
+};
+
+$(document).ready(function () {
+    geolocalizar();
+    dibujar_cercanos();
+});
